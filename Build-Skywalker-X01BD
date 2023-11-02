@@ -1,0 +1,8 @@
+mkdir -p out
+export ARCH=arm64
+export SUBARCH=arm64
+export CROSS_COMPILE="/usr/bin/aarch64-linux-gnu-"
+export CROSS_COMPILE_ARM32="/usr/bin/arm-linux-gnueabi-"
+make X01BD-ksu_defconfig O=out
+make O=out -j8
+echo "the output is image.gz-dtb file in  'out/arch/arm64/boot', replace the image.gz-dtb file in a zip file of kernel that already made and flash"
