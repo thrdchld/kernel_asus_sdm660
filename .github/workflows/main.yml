@@ -1,0 +1,24 @@
+name: "Build Skywalker"              # Description of the workflow.
+on:
+  push:
+    branches: X01BD-EAS-PIE                                   # Branch to build.
+  workflow_dispatch:                                  # Allow to manually trigger workflow.
+jobs:
+  build:
+    name: "Build Skywalker kernel"
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Checkout kernel source"                  # Clone the kernel source.
+      uses: actions/checkout@v2
+    - name: "Checkout zipper"                         # (OPTIONAL) Clone the AnyKernel3 template.
+      uses: actions/checkout@v2
+      with:
+        repository: thrdchld/AnyKernel3             # Your own AnyKernel3 repository.
+        path: zipper                                  # Clone to path "zipper", REQUIRED.
+    - name: "Android kernel build"                    # Build kernel with lemniskett/android-kernel-actions.
+      uses: lemniskett/android-kernel-actions@master
+      with:
+        arch: arm64                                   # Specify arch
+        compiler: gcc/9                               # Specify toolchain to use
+        defconfig: X01BD-ksu_defconfig                    # Specify defconfig to use
+        image: Image.gz-dtb                           # Specify final build file
