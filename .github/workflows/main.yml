@@ -1,3 +1,4 @@
+
 name: "Build Skywalker"              # Description of the workflow.
 on:
   push:
@@ -22,3 +23,8 @@ jobs:
         compiler: gcc/9                               # Specify toolchain to use
         defconfig: X01BD-ksu_defconfig                    # Specify defconfig to use
         image: Image.gz-dtb                           # Specify final build file
+
+    - name: Release build
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: ${{ steps.build.outputs.outfile }}
