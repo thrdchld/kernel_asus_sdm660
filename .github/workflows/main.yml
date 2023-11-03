@@ -1,4 +1,3 @@
-
 name: "Build Skywalker"                               # Description of the workflow.
 on:
   push:
@@ -25,7 +24,7 @@ jobs:
         image: Image.gz-dtb                           # Specify final build file
 
     - name: Release build
-  uses: ncipollo/release-action@v1
-  with:
-    artifacts: ${{ steps.<step id>.outputs.outfile }}
-    token: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1
+      with:
+      artifacts: ${{ steps.<step id>.outputs.outfile }}
+      token: ${{ secrets.GITHUB_TOKEN }}
